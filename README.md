@@ -1,5 +1,8 @@
 # wtf Project for pre-release
 
+> _"Something, something, something, darkside...Something, something, something, complete"
+	Emperor Palpatine
+	
 This exercise will bring up 3 separate clusters running DSE 5.0.
 
 * **death\_star** - A central hub cluster of 6 nodes for collecting data from all other monitored systems that are under the Emperor's rule
