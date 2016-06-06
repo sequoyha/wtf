@@ -26,13 +26,19 @@ ctool start yavin_4 enterprise &
 wait
 echo "DSE started on All clusters"
 
-ctool scp alderaan 0 config/configure_dense_nodes /home/automaton
-ctool scp yavin_4 0 config/configure_dense_nodes /home/automaton
+#Pull wtf-exercise repo onto nodes
+
+for node in 0 1 2
+	do ctool run death_star $node 'git clone https://github.com/sequoyha/wtf-exercise.git'
+done
+
+ctool run yavin_4 0 'git clone https://github.com/sequoyha/wtf-exercise.git'
+ctool run alderaan 0 'git clone https://github.com/sequoyha/wtf-exercise.git'
 
 echo "Setting up Multi-instance on alderaan cluster"
-ctool run alderaan 0 './configure_dense_nodes' 
+ctool run alderaan 0 'wtf-exercise/config/configure_dense_nodes' 
 echo "Setting up Multi-instance on yavin_4 cluster"
-ctool run yavin_4 0 './configure_dense_nodes'
+ctool run yavin_4 0 'wtf-exercise/config/configure_dense_nodes'
 echo "sleeping 30 seconds to allow configuration changes to take effect"
 sleep 30
 
@@ -78,12 +84,12 @@ ctool scp alderaan 0 hub_addresses_for_advanced_replication /home/automaton
 
 #move following to on node only
 echo "Beginning schema work on yavin_4"
-ctool scp yavin_4 0 config/configure_schema /home/automaton
-ctool run yavin_4 0 './configure_schema' &
+#ctool scp yavin_4 0 config/configure_schema /home/automaton
+ctool run yavin_4 0 'wtf-exercise/config/configure_schema' &
 
 echo "Beginning schema work on alderaan"
-ctool scp alderaan 0 config/configure_schema /home/automaton
-ctool run alderaan 0 './configure_schema' &
+#ctool scp alderaan 0 config/configure_schema /home/automaton
+ctool run alderaan 0 'wtf-exercise/config/configure_schema' &
 
 echo "Sleeping for 2 hours for initial data population"
 sleep 7200
@@ -91,6 +97,6 @@ sleep 7200
 for node in 0 2; do ctool run death_star $node 'wtf-exercise/config/Tiered_star'; ctool restart death_star $node; done
 ctool run death_star 1 'wtf-exercise/config/Tiered_death'; ctool restart death_star 1
 
-for node 0 1 2; do ctool run death_star $node 'rm -rf wtf-exercise';done
+for node in 0 1 2; do ctool run death_star $node 'rm -rf wtf-exercise';done
 ctool run yavin_4 0 'rm -rf wtf-exercise'
 ctool run alderaan 0 'rm -rf wtf-exercise'
