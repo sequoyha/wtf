@@ -2,13 +2,13 @@
 
 echo "Creating clusters for WTF project"
 echo "Launching death_star cluster of 3 nodes"
-ctool launch death_star 3 &
+ctool launch death_star --ttl 7200 3 &
 sleep 15
 echo "Launching alderaan cluster of 1 node"
-ctool launch -i c3.8xlarge alderaan 1 &
+ctool launch -i c3.8xlarge --ttl 7200 alderaan 1 &
 sleep 15
 echo "Launching yavin_4 cluster of 1 node"
-ctool launch -i c3.8xlarge yavin_4 1 &
+ctool launch -i c3.8xlarge --ttl 7200 yavin_4 1 &
 wait
 echo "All clusters launched"
 echo "Installing DSE 5.0 on death_star cluster"

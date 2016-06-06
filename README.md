@@ -19,9 +19,15 @@ The exercise is designed to bring up a healthy system and then gradually add in 
 
 Before running this exercise, you will need to set up a single server running OpsCenter 6.0. Use the **eap** documentation found [here](http://eap.datastax.com/phpbb/viewforum.php?f=13) to install and configure OpsCenter on your server. You will need to add all 3 of the above clusters to your OpsCenter 6.0 service.
 
+## NOTE
+
+The nodes are designed to shut down automatically after 5 days. The clusters will still remain, but you should not be charged for them. Please destroy the clusters when done ASAP. You can use the _**you_may_fire_when_ready**_ script to destroy the clusters.
+
+* * *
+
 ## WARNING
 
-The **you_may_fire_when_ready** file is designed to destroy **ALL** ctool clusters. Do not use if you have additional ctool clusters that you want to keep.
+The _**you_may_fire_when_ready**_ file is designed to destroy **ALL** ctool clusters. Do not use if you have additional ctool clusters that you want to keep.
 
 Instead manually destroy the clusters.
 
