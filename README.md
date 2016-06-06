@@ -1,7 +1,7 @@
 # wtf Project for pre-release
 
 > _"Something, something, something, darkside...Something, something, something, complete"
->	Emperor Palpatine_
+>	 - Emperor Palpatine_
 
 This exercise will bring up 3 separate clusters running DSE 5.0.
 
