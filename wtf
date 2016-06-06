@@ -92,14 +92,14 @@ ctool scp alderaan 0 hub_addresses_for_advanced_replication /home/automaton
 
 #SCHEMA and DATA
 echo "Beginning schema work on yavin_4"
-ctool run yavin_4 0 'wtf-exercise/config/configure_schema'
-
+ctool run yavin_4 0 'wtf-exercise/config/configure_schema' &
+sleep 600
 echo "Beginning schema work on alderaan"
-ctool run alderaan 0 'wtf-exercise/config/configure_schema'
-
+ctool run alderaan 0 'wtf-exercise/config/configure_schema' &
+sleep 600
 echo "Sleeping for 2 hours for initial data population"
 #sleep 7200
-sleep 60
+sleep 
 #UMMMM
 for node in 0 2; do ctool run death_star $node 'wtf-exercise/config/Tiered_star'; ctool restart death_star $node; done
 ctool run death_star 1 'wtf-exercise/config/Tiered_death'; ctool restart death_star 1
