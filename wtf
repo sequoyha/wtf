@@ -90,3 +90,7 @@ sleep 7200
 
 for node in 0 2; do ctool run death_star $node 'wtf-exercise/config/Tiered_star'; ctool restart death_star $node; done
 ctool run death_star 1 'wtf-exercise/config/Tiered_death'; ctool restart death_star 1
+
+for node 0 1 2; do ctool run death_star $node 'rm -rf wtf-exercise';done
+ctool run yavin_4 0 'rm -rf wtf-exercise'
+ctool run alderaan 0 'rm -rf wtf-exercise'
