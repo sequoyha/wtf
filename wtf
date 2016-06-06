@@ -59,7 +59,7 @@ echo "Sleeping 5 minutes to allow dse-alderaan_1 to bootstrap fully"
 sleep 300
 echo "Starting dse-alderaan_2"
 ctool run alderaan 0 'sudo service dse-alderaan_2 start'
-echo "Sleeping 5 minutes to allow dse-alderaan_1 to bootstrap fully"
+echo "Sleeping 5 minutes to allow dse-alderaan_2 to bootstrap fully"
 sleep 300
 echo "Verifying all nodes in alderaan cluster are up and normal"
 ctool run alderaan 0 'nodetool status'
@@ -93,13 +93,11 @@ ctool scp alderaan 0 hub_addresses_for_advanced_replication /home/automaton
 #SCHEMA and DATA
 echo "Beginning schema work on yavin_4"
 ctool run yavin_4 0 'wtf-exercise/config/configure_schema' &
-sleep 600
 echo "Beginning schema work on alderaan"
 ctool run alderaan 0 'wtf-exercise/config/configure_schema' &
-sleep 600
-echo "Sleeping for 2 hours for initial data population"
+echo "Sleeping for 1 hours for initial data population"
 #sleep 7200
-sleep 
+sleep 3600
 #UMMMM
 for node in 0 2; do ctool run death_star $node 'wtf-exercise/config/Tiered_star'; ctool restart death_star $node; done
 ctool run death_star 1 'wtf-exercise/config/Tiered_death'; ctool restart death_star 1
