@@ -102,14 +102,14 @@ echo "Sleeping for 1 hours for initial data population"
 sleep 3600
 #UMMMM
 for node in 0 2
-	do ctool run death_star $node 'wtf-exercise/config/Tiered_star'
+	do ctool run death_star $node 'sudo ~/wtf-exercise/config/Tiered_star'
 	ctool restart death_star $node
 done
-ctool run death_star 1 'wtf-exercise/config/Tiered_death'
-ctool restart death_star 1
+ctool run death_star 1 'sudo ~/wtf-exercise/config/Tiered_death'
+ctool restart death_star 1 &
 
 for node in 0 1 2
-	do ctool run death_star $node 'rm -rf wtf-exercise'
+	do ctool run death_star $node 'sudo rm -rf ~/wtf-exercise'
 done
-ctool run yavin_4 0 'rm -rf wtf-exercise'
-ctool run alderaan 0 'rm -rf wtf-exercise'
+ctool run yavin_4 0 'sudo rm -rf ~/wtf-exercise'
+ctool run alderaan 0 'sudo rm -rf ~/wtf-exercise'
