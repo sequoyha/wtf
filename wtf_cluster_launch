@@ -9,7 +9,7 @@ echo "Launching alderaan cluster of 1 node"
 ctool launch -i c3.8xlarge --ttl 7200 alderaan 1 "ec2:us-east-1:1" &
 sleep 15
 echo "Launching yavin_4 cluster of 1 node"
-ctool rightscale launch -i c3.8xlarge --ttl 7200 yavin_4 1 "ec2:us-east-1:1" &
+ctool launch -i c3.8xlarge --ttl 7200 yavin_4 1 "ec2:us-east-1:1" &
 wait
 echo "All clusters launched"
 
