@@ -21,7 +21,7 @@ The exercise is designed to bring up a healthy system and then gradually add in 
 
 ## NOTES
 
-1 Before running this exercise, you will need to set up a single server running OpsCenter 6.0. Use the **eap** documentation found [here](http://docs.datastax.com/en/opscenter/6.0/opsc/opscWhatsNew.html) (_you will need your DataStax Academy credentials to access the page) to install and configure OpsCenter on your server. You will need to add all 3 of the above clusters to your OpsCenter 6.0 service.
+1 Before running this exercise, you will need to set up a single server running OpsCenter 6.0. Use the **eap** documentation found [here](http://docs.datastax.com/en/opscenter/6.0/opsc/opscWhatsNew.html) (_you will need your DataStax Academy credentials to access the page_) to install and configure OpsCenter on your server. You will need to add all 3 of the above clusters to your OpsCenter 6.0 service.
 
 2 The nodes are designed to shut down automatically after 5 days. The clusters will still remain, but you should not be charged for them. Please destroy the clusters when done ASAP. You can use the _**you_may_fire_when_ready**_ script to destroy the clusters.
 
