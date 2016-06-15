@@ -1,0 +1,19 @@
+#!/bin/bash
+
+#INSTALL DSE
+echo "Installing DSE 5.0 on death_star cluster"
+ctool install -a eap -v 5.0.0-eap7 -n 128 death_star enterprise &
+echo "Installing DSE 5.0 on alderaan cluster"
+ctool install -a eap -v 5.0.0-eap7 -n 128 alderaan enterprise &
+echo "Installing DSE 5.0 on yavin_4 cluster"
+ctool install -a eap -v 5.0.0-eap7 -n 128 yavin_4 enterprise &
+wait
+echo "DSE Installed on all clusters"
+
+#START DSE
+echo "Starting DSE on all clusters"
+ctool start death_star enterprise &
+ctool start alderaan enterprise &
+ctool start yavin_4 enterprise &
+wait
+echo "DSE started on All clusters"

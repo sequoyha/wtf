@@ -1,36 +1,5 @@
 #!/bin/bash
 
-#LAUNCH CLUSTER
-echo "Creating clusters for WTF project"
-echo "Launching death_star cluster of 3 nodes"
-ctool launch death_star --ttl 7200 3 &
-sleep 15
-echo "Launching alderaan cluster of 1 node"
-ctool launch -i c3.8xlarge --ttl 7200 alderaan 1 &
-sleep 15
-echo "Launching yavin_4 cluster of 1 node"
-ctool launch -i c3.8xlarge --ttl 7200 yavin_4 1 &
-wait
-echo "All clusters launched"
-
-#INSTALL DSE
-echo "Installing DSE 5.0 on death_star cluster"
-ctool install -a eap -v 5.0.0-eap7 -n 128 death_star enterprise &
-echo "Installing DSE 5.0 on alderaan cluster"
-ctool install -a eap -v 5.0.0-eap7 -n 128 alderaan enterprise &
-echo "Installing DSE 5.0 on yavin_4 cluster"
-ctool install -a eap -v 5.0.0-eap7 -n 128 yavin_4 enterprise &
-wait
-echo "DSE Installed on all clusters"
-
-#START DSE
-echo "Starting DSE on all clusters"
-ctool start death_star enterprise &
-ctool start alderaan enterprise &
-ctool start yavin_4 enterprise &
-wait
-echo "DSE started on All clusters"
-
 #Pull wtf-exercise repo onto nodes
 
 for node in 0 1 2

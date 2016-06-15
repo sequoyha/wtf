@@ -1,0 +1,20 @@
+#!/bin/bash
+
+#LAUNCH CLUSTER
+echo "Creating clusters for WTF project"
+echo "Launching death_star cluster of 3 nodes"
+ctool --provider rightscale launch death_star --ttl 7200 "ec2:us-eat-1:3" &
+sleep 15
+echo "Launching alderaan cluster of 1 node"
+ctool --provider rightscale launch -i c3.8xlarge --ttl 7200 alderaan "ec2:us-eat-1:1" &
+sleep 15
+echo "Launching yavin_4 cluster of 1 node"
+ctool --provider rightscale launch -i c3.8xlarge --ttl 7200 yavin_4 "ec2:us-eat-1:1" &
+wait
+echo "All clusters launched"
+
+#INSTALL DSE
+# Use OpsCenter LCM to configure and Install DSE 5.0 on all servers
+
+#START DSE
+# Use OpsCenter LCM to start  DSE 5.0 on all servers
