@@ -82,3 +82,4 @@ for node in 0 1 2
 done
 ctool run yavin_4 0 'sudo rm -rf ~/wtf-exercise'
 ctool run alderaan 0 'sudo rm -rf ~/wtf-exercise'
+echo "what_have_you_done script completed. Help!!!!"
