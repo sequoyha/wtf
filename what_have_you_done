@@ -3,11 +3,18 @@
 #Pull wtf-exercise repo onto nodes
 
 for node in 0 1 2
+	echo "Cloning necessary data to death_star ${node}"
 	do ctool run death_star $node 'git clone https://github.com/sequoyha/wtf-exercise.git'
 done
 
+echo "Cloning necessary data to yavin_4"
 ctool run yavin_4 0 'git clone https://github.com/sequoyha/wtf-exercise.git'
+echo "Cloning necessary data to alderaan"
 ctool run alderaan 0 'git clone https://github.com/sequoyha/wtf-exercise.git'
+
+echo "Pulling graph data to death_star 0"
+ctool run death_star 0 'sudo mv ~/wtf-exercise/graph /mnt'
+ctool run death_star 0 'sudo /mnt/graph/pullGraph' &
 
 #CONFIGURE CLUSTERS
 echo "Setting up Multi-instance on alderaan cluster"
@@ -76,9 +83,6 @@ for node in 0 2
 done
 ctool run death_star 1 'sudo ~/wtf-exercise/config/Tiered_death'
 ctool restart death_star 1 &
-
-ctool run death_star 0 'sudo mv ~/wtf-exercise/graph /mnt'
-ctool run death_star 0 'sudo /mnt/graph/pullGraph' &
 
 for node in 0 1 2
 	do ctool run death_star $node 'sudo rm -rf ~/wtf-exercise'
