@@ -9,6 +9,9 @@ done
 ctool run yavin_4 0 'git clone https://github.com/sequoyha/wtf-exercise.git'
 ctool run alderaan 0 'git clone https://github.com/sequoyha/wtf-exercise.git'
 
+ctool run death_star 0 'sudo mv ~/wtf-exercise/graph /mnt'
+ctool run death_star 0 'sudo /mnt/graph/pullGraph' &
+
 #CONFIGURE CLUSTERS
 echo "Setting up Multi-instance on alderaan cluster"
 ctool run alderaan 0 'wtf-exercise/config/configure_dense_nodes' 
@@ -68,7 +71,7 @@ echo "Beginning schema work on alderaan"
 ctool run alderaan 0 'wtf-exercise/config/configure_schema' &
 date
 echo "Sleeping for 3 hours for initial data population"
-sleep 10800
+#sleep 10800
 #UMMMM
 for node in 0 2
 	do ctool run death_star $node 'sudo ~/wtf-exercise/config/Tiered_star'
@@ -77,8 +80,7 @@ done
 ctool run death_star 1 'sudo ~/wtf-exercise/config/Tiered_death'
 ctool restart death_star 1 &
 
-ctool run death_star 0 'sudo mv ~/wtf-exercise/graph /mnt'
-ctool run death_star 0 'sudo /mnt/graph/pullGraph' &
+
 
 for node in 0 1 2
 	do ctool run death_star $node 'sudo rm -rf ~/wtf-exercise'
