@@ -1,4 +1,4 @@
 #!/bin/bash
-for cluster in death_star alderaan yavin_4
+for cluster in death_star alderaan yavin_4 opscenter_6
 	do ctool destroy $cluster
 done
